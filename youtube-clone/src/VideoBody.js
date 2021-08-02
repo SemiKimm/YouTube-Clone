@@ -5,13 +5,18 @@ const bodyStyle = {
   color: 'black',
   background: 'white',
   width: '100%',
-  display: 'flex', //내부정렬->block element 정렬
-  flexDirection: 'column', //가로정렬
+  display: 'flex',
+  flexDirection: 'column',
 };
-function VideoBody() {
+function VideoBody({ videoState, setVideoState, home, setHome }) {
   return (
     <div style={bodyStyle}>
-      <VideoList />
+      <VideoList
+        videoState={videoState}
+        setVideoState={setVideoState}
+        home={home}
+        setHome={setHome}
+      />
       <VideoList />
       <VideoList />
     </div>

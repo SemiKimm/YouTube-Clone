@@ -1,25 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchBar from './SearchBar';
 import VideoBody from './VideoBody';
 import MenuBar from './MenuBar';
-let menuState = true;
+import WatchingVideo from './WatchingVideo';
 function App() {
+  const [menubar, setMenubar] = useState(true);
+  const [videoState, setVideoState] = useState(false);
+  const [home, setHome] = useState(true);
   return (
     <>
       <div className='searchbar'>
-        <SearchBar menuState={menuState} />
+        <SearchBar
+          menubar={menubar}
+          setMenubar={setMenubar}
+          videoState={videoState}
+          setVideoState={setVideoState}
+          home={home}
+          setHome={setHome}
+        />
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
-        {menuState === true && (
-          <div className='menubar'>
-            <MenuBar />
+      {videoState === false || home === true ? (
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div>
+            {menubar === true && (
+              <div className='menubar'>
+                <MenuBar />
+              </div>
+            )}
           </div>
-        )}
-        <div className='videobody'>
-          <VideoBody />
+
+          <div className='videobody'>
+            <VideoBody
+              videoState={videoState}
+              setVideoState={setVideoState}
+              home={home}
+              setHome={setHome}
+            />
+          </div>
         </div>
-      </div>
+      ) : (
+        <div>
+          <WatchingVideo />
+        </div>
+      )}
     </>
   );
 }

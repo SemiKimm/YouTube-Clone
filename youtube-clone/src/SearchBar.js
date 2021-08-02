@@ -9,23 +9,33 @@ const barStyle = {
   fontSize: '20px',
   border: '1px solid gainsboro',
   lineHeight: 1.5,
-  display: 'flex', //내부정렬->block element 정렬
-  flexDirection: 'row', //가로정렬
+  display: 'flex',
+  flexDirection: 'row',
 };
 
-function SearchBar({ menuState }) {
+function SearchBar({
+  menubar,
+  setMenubar,
+  videoState,
+  setVideoState,
+  home,
+  setHome,
+}) {
   function onClickMenuBtn() {
-    menuState = !menuState;
-    console.log(menuState);
+    setMenubar(!menubar);
+    //console.log(menubar);
   }
-
+  const logoClick = () => {
+    setVideoState((videoState = false));
+    setHome((home = true));
+  };
   return (
     <>
       <div style={barStyle}>
         <div onClick={onClickMenuBtn}>
           <img src={MenuImg} width='45' height='45' alt='menuIcon' />
         </div>
-        <div>
+        <div onClick={logoClick}>
           <img src={LogoImg} width='150' height='45' alt='logoImg' />
         </div>
         <div>
